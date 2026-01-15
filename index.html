@@ -172,7 +172,10 @@
             width: 380px; height: 480px;
             top: 50%; left: 50%;
             transform: translate(-50%, -50%);
-            z-index: 2; overflow: hidden; background: var(--dark); 
+            z-index: 2; overflow: hidden; 
+            /* UBAH BAGIAN INI */
+            background: #030303;  /* Mengganti var(--dark) menjadi #030303 */
+            border: 1px solid #030303; /* Menambahkan border warna sama agar menyatu */ 
         }
         .g-card-main img { width: 100%; height: 100%; object-fit: cover; opacity: 0.9; }
 
@@ -541,4 +544,5 @@
         function openWAService(srv) { /* Optional Logic */ }
     </script>
 </body>
+
 </html>
