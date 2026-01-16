@@ -247,25 +247,56 @@
         .mobile-link { font-family: var(--font-head); font-size: 1.5rem; font-weight: 700; color: var(--dark); border-bottom: 1px solid #eee; padding-bottom: 15px;}
         
         @media (max-width: 900px) {
+            /* Mencegah website goyang kiri-kanan */
+            html, body {
+                overflow-x: hidden;
+                width: 100%;
+                position: relative;
+            }
+
             .navbar { padding: 15px 0; }
             .nav-links, .desktop-action { display: none; }
             .hamburger { display: block; }
             
-            /* UPDATED MOBILE HERO */
+            /* HERO MOBILE FIX */
             .hero { 
                 padding-top: 120px;
-                padding-bottom: 180px; /* EXTRA SPACE for Stacked Buttons vs Marquee */
-                display: block; /* Block layout for stacking */
+                padding-bottom: 180px; 
+                display: block; 
                 min-height: auto;
+                overflow: hidden; /* Pastikan konten hero tidak bocor */
             }
-            .hero-container { grid-template-columns: 1fr; gap: 40px; text-align: center; }
-            .hero-content { align-items: center; }
+            .hero-container { 
+                grid-template-columns: 1fr; 
+                gap: 30px; 
+                text-align: center; 
+                width: 100%; /* Pastikan container tidak melebihi layar */
+                padding: 0 20px; /* Padding kiri kanan aman */
+            }
+            .hero-content { align-items: center; width: 100%; }
             .hero-label { justify-content: center; }
-            .hero-title { font-size: 3.2rem; }
             
-            /* Image on Mobile - Show it but resize */
-            .hero-visual { display: flex; margin-top: 40px; height: auto; }
-            .hero-img-3d { max-width: 80%; }
+            /* --- PERBAIKAN UTAMA DI SINI --- */
+            .hero-title { 
+                /* Menggunakan viewport width (vw) agar font mengecil otomatis mengikuti lebar layar */
+                font-size: clamp(2.2rem, 10vw, 3rem); 
+                
+                /* Jika masih kepanjangan, paksa kata untuk turun baris */
+                word-wrap: break-word;
+                overflow-wrap: break-word;
+                line-height: 1.2;
+            }
+            
+            .hero-visual { 
+                display: flex; 
+                margin-top: 20px; 
+                height: auto; 
+                justify-content: center;
+            }
+            .hero-img-3d { 
+                max-width: 90%; /* Jangan 100% agar ada napas di kiri kanan */
+                height: auto; 
+            }
             
             .hero-btns { flex-direction: column; width: 100%; gap: 15px; align-items: center; }
             .hero-btns .btn { width: 100%; max-width: 320px; }
@@ -275,7 +306,7 @@
             .mission-box { margin-top: 50px; padding: 30px; }
             
             .acc-title { font-size: 1.3rem; }
-            .footer-cta h2 { font-size: 2.5rem; }
+            .footer-cta h2 { font-size: 2.2rem; word-wrap: break-word; } /* Fix juga untuk footer */
         }
     </style>
 </head>
@@ -512,4 +543,5 @@
     </script>
 </body>
 </html>
+
 
