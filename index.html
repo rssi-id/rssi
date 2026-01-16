@@ -18,7 +18,7 @@
             --secondary: #007efc; /* Azure Blue */
             --dark: #1a1a1a;      /* Almost Black */
             --light: #FFFFFF;
-            --bg-grey: #FAFAFA;   /* Off-White */
+            --bg-grey: #FAFAFA;   
             --border: #E5E7EB;
             
             --font-head: 'Montserrat', sans-serif;
@@ -58,14 +58,15 @@
             white-space: nowrap; width: auto; position: relative; overflow: hidden; z-index: 1;
         }
         .btn-primary { 
-            background: var(--primary); color: white; border: none;
+            background: var(--primary); color: white; 
+            border: 2px solid var(--primary); /* Border sama warna agar size konsisten */
         }
         .btn-primary::before {
             content: ''; position: absolute; top: 0; left: 0; width: 0%; height: 100%;
             background: var(--secondary); z-index: -1; transition: 0.4s var(--ease);
         }
         .btn-primary:hover::before { width: 100%; }
-        .btn-primary:hover { box-shadow: 0 10px 30px rgba(99, 102, 241, 0.3); transform: translateY(-3px); }
+        .btn-primary:hover { box-shadow: 0 10px 30px rgba(99, 102, 241, 0.3); transform: translateY(-3px); border-color: var(--secondary); }
 
         .btn-outline { 
             background: transparent; border: 2px solid var(--dark); color: var(--dark); 
@@ -81,7 +82,6 @@
         }
         .logo { display: flex; align-items: center; gap: 10px; }
         .logo img { height: 40px; width: auto; } 
-        /* Fallback Style jika gambar tidak ada */
         .logo-fallback { font-family: var(--font-head); font-weight: 900; font-size: 1.5rem; color: var(--primary); letter-spacing: -1px;}
 
         .nav-links { display: flex; gap: 40px; align-items: center; }
@@ -92,99 +92,81 @@
         .nav-link:hover { color: var(--primary); }
         .desktop-action { display: block; }
 
-        /* --- 5. HERO SECTION --- */
+        /* --- 5. EXTRAORDINARY HERO SECTION (UPDATED) --- */
         .hero {
             position: relative;
             min-height: 100vh;
             padding-top: 140px; 
             padding-bottom: 80px;
-            background: #ffffff;
+            background: #ffffff; /* White background for clean look */
             overflow: hidden;
             display: flex;
             align-items: center;
         }
 
+        /* Subtle Grid Background */
         .hero-bg-grid {
             position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-            background-image: linear-gradient(#f0f0f0 1px, transparent 1px), linear-gradient(90deg, #f0f0f0 1px, transparent 1px);
-            background-size: 50px 50px;
+            background-image: linear-gradient(#f7f7f7 1px, transparent 1px), linear-gradient(90deg, #f7f7f7 1px, transparent 1px);
+            background-size: 60px 60px;
             z-index: 0;
-            opacity: 0.5;
         }
 
         .hero-container {
             display: grid;
-            grid-template-columns: 1.1fr 0.9fr;
-            gap: 60px;
+            grid-template-columns: 1fr 1fr; /* Split 50/50 */
+            gap: 40px;
             width: 100%;
             max-width: var(--container-w);
             margin: 0 auto;
             padding: 0 24px;
             position: relative;
             z-index: 2;
+            align-items: center;
         }
 
+        /* Left: Typography */
         .hero-content { display: flex; flex-direction: column; justify-content: center; }
         
         .hero-label {
             font-family: var(--font-head); font-weight: 700; font-size: 0.8rem;
             letter-spacing: 3px; color: var(--secondary); text-transform: uppercase;
-            margin-bottom: 25px; display: flex; align-items: center; gap: 10px;
+            margin-bottom: 20px; display: flex; align-items: center; gap: 10px;
         }
-        .hero-label::before { content: ''; width: 30px; height: 2px; background: var(--secondary); }
+        .hero-label::before { content: ''; width: 40px; height: 2px; background: var(--secondary); }
 
         .hero-title {
-            font-size: clamp(3rem, 6vw, 5.5rem);
+            font-size: clamp(3.5rem, 7vw, 6rem); /* Massive Font */
             font-weight: 800;
-            line-height: 1.05;
+            line-height: 1;
             color: var(--dark);
             margin-bottom: 30px;
             letter-spacing: -2px;
         }
         
         .hero-desc {
-            font-size: 1.25rem; color: #555; max-width: 550px; margin-bottom: 50px; font-weight: 400;
+            font-size: 1.2rem; color: #666; max-width: 500px; margin-bottom: 50px; font-weight: 400;
         }
 
         .hero-btns { display: flex; gap: 20px; align-items: center; flex-wrap: wrap; }
 
-        /* Right: Abstract Visual */
+        /* Right: The 3D Image */
         .hero-visual {
-            position: relative; height: 600px; display: flex; align-items: center; justify-content: center;
-        }
-
-        .glass-stack { position: relative; width: 100%; height: 100%; }
-        .g-card {
-            position: absolute;
-            background: rgba(255, 255, 255, 0.7);
-            backdrop-filter: blur(20px);
-            border: 1px solid rgba(255, 255, 255, 0.8);
-            border-radius: 24px;
-            padding: 30px;
-            box-shadow: 0 20px 50px rgba(0,0,0,0.08);
-            transition: 0.5s var(--ease);
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
         
-        .g-card-main {
-            width: 380px; height: 480px;
-            top: 50%; left: 50%;
-            transform: translate(-50%, -50%);
-            z-index: 2; overflow: hidden; 
-            background: #030303; 
-            border: 1px solid #030303;
+        .hero-img-3d {
+            width: 100%;
+            max-width: 700px;
+            height: auto;
+            object-fit: contain;
+            /* Floating Animation */
+            animation: float 6s ease-in-out infinite;
+            filter: drop-shadow(0 30px 60px rgba(99, 102, 241, 0.15)); /* Soft shadow */
         }
-        .g-card-main img { width: 100%; height: 100%; object-fit: cover; opacity: 0.9; }
-
-        .g-card-small { width: 200px; z-index: 3; display: flex; flex-direction: column; gap: 10px; }
-        .g-icon {
-            width: 50px; height: 50px; background: var(--primary); color: white;
-            border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 1.5rem;
-        }
-        .g-title { font-size: 1rem; font-weight: 700; font-family: var(--font-head); }
-        .g-sub { font-size: 0.8rem; color: #666; }
-
-        .gc-1 { top: 15%; left: 0; animation: float 6s ease-in-out infinite; }
-        .gc-2 { bottom: 10%; right: -20px; animation: float 7s ease-in-out infinite 1s; }
 
         @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-20px); } }
 
@@ -201,7 +183,7 @@
         }
         @keyframes marquee { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
 
-        /* --- 6. SECTIONS --- */
+        /* --- 6. SECTIONS STANDARD --- */
         .section-padding { padding: 120px 0; }
         
         .vision-grid { display: grid; grid-template-columns: 0.8fr 1.2fr; gap: 80px; align-items: start; }
@@ -216,6 +198,7 @@
             display: flex; align-items: flex-start; gap: 16px; color: #555;
         }
         .problem-list i { color: var(--secondary); margin-top: 4px; }
+        
         .vision-statement { font-size: 2rem; line-height: 1.4; font-family: var(--font-head); font-weight: 600; color: var(--dark); }
         .highlight { color: var(--primary); }
         
@@ -224,6 +207,7 @@
             border-left: 5px solid var(--primary); border-radius: 0 12px 12px 0;
         }
 
+        /* Services */
         .services-section { padding: 120px 0; background: var(--bg-grey); }
         .accordion-item { border-bottom: 1px solid #d1d5db; padding: 35px 0; cursor: pointer; transition: 0.3s; }
         .accordion-item:first-child { border-top: 1px solid #d1d5db; }
@@ -233,6 +217,7 @@
         .accordion-item.active .acc-title { color: var(--primary); }
         .accordion-item.active .acc-content { max-height: 150px; padding-top: 20px; }
 
+        /* Team */
         .team-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 30px; margin-top: 60px; }
         .team-card { 
             background: white; border: 1px solid var(--border); border-radius: 16px; padding: 40px 30px; text-align: center; transition: 0.3s; 
@@ -266,26 +251,27 @@
             .nav-links, .desktop-action { display: none; }
             .hamburger { display: block; }
             
-            /* MOBILE HERO OPTIMIZATION */
+            /* UPDATED MOBILE HERO */
             .hero { 
                 padding-top: 120px;
-                padding-bottom: 180px; /* EXTRA SPACE agar tombol tidak tertutup marquee */
-                display: block; 
+                padding-bottom: 180px; /* EXTRA SPACE for Stacked Buttons vs Marquee */
+                display: block; /* Block layout for stacking */
                 min-height: auto;
             }
             .hero-container { grid-template-columns: 1fr; gap: 40px; text-align: center; }
             .hero-content { align-items: center; }
             .hero-label { justify-content: center; }
-            .hero-title { font-size: 3rem; }
-            .hero-visual { display: none; } 
+            .hero-title { font-size: 3.2rem; }
+            
+            /* Image on Mobile - Show it but resize */
+            .hero-visual { display: flex; margin-top: 40px; height: auto; }
+            .hero-img-3d { max-width: 80%; }
             
             .hero-btns { flex-direction: column; width: 100%; gap: 15px; align-items: center; }
             .hero-btns .btn { width: 100%; max-width: 320px; }
 
             .vision-grid { grid-template-columns: 1fr; gap: 40px; }
             .context-col { position: relative; top: 0; }
-            
-            /* Mission Box Fix */
             .mission-box { margin-top: 50px; padding: 30px; }
             
             .acc-title { font-size: 1.3rem; }
@@ -298,7 +284,7 @@
     <nav class="navbar" id="navbar">
         <div class="container flex-between">
             <a href="#" class="logo">
-                <img src="images/rssi.png" alt="RSSI" onerror="this.style.display='none'; document.querySelector('.logo-fallback').style.display='block';">
+                <img src="rssi.png" alt="RSSI" onerror="this.style.display='none'; document.querySelector('.logo-fallback').style.display='block';">
                 <span class="logo-fallback" style="display:none;">RSSI.</span>
             </a>
             
@@ -343,25 +329,7 @@
             </div>
 
             <div class="hero-visual">
-                <div class="glass-stack">
-                    <div class="g-card g-card-main">
-                        <img src="images/hero.jpg" alt="Sustainable Energy Tech">
-                    </div>
-                    <div class="g-card g-card-small gc-1">
-                        <div class="g-icon"><i class="fa-solid fa-bolt"></i></div>
-                        <div>
-                            <div class="g-title">Akselerasi</div>
-                            <div class="g-sub">Inovasi Teknologi</div>
-                        </div>
-                    </div>
-                    <div class="g-card g-card-small gc-2">
-                        <div class="g-icon"><i class="fa-solid fa-leaf"></i></div>
-                        <div>
-                            <div class="g-title">Solusi Hijau</div>
-                            <div class="g-sub">Energi Terbarukan</div>
-                        </div>
-                    </div>
-                </div>
+                <img src="images/hero-bg.png" class="hero-img-3d" alt="Future Tech & Green Energy">
             </div>
         </div>
 
@@ -377,7 +345,6 @@
                 <span class="marquee-item">Future</span>
                 <span class="marquee-item">Innovation</span>
                 <span class="marquee-item">Technology</span>
-                <span class="marquee-item">Acceleration</span>
             </div>
         </div>
     </header>
@@ -505,7 +472,7 @@
         <div class="container">
             <div class="footer-cta">
                 <h2>Siap untuk akselerasi?</h2>
-                <button class="btn btn-primary" style="background: white; color: var(--dark);" onclick="openWA('footer')">
+                <button class="btn btn-primary" style="background: white; color: var(--dark); border-color:white;" onclick="openWA('footer')">
                     Mulai Konsultasi
                 </button>
             </div>
